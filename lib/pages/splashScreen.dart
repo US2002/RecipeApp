@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_genie/pages/home.dart';
+import 'package:recipe_genie/splashScreenPages/page1.dart';
+import 'package:recipe_genie/splashScreenPages/page2.dart';
+import 'package:recipe_genie/splashScreenPages/page3.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class splashScreen extends StatefulWidget {
   const splashScreen({super.key});
@@ -9,37 +13,79 @@ class splashScreen extends StatefulWidget {
 }
 
 class _splashScreenState extends State<splashScreen> {
+  PageController _controller = PageController();
+  bool onLastPage = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Splash Screen'), //Just for Info not required here
-        backgroundColor: Colors.blue,
-      ),
-      body: Center(
-        child: TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-                  if (states.contains(MaterialState.hovered))
-                    return Colors.blue.withOpacity(0.04);
-                  if (states.contains(MaterialState.focused) ||
-                      states.contains(MaterialState.pressed))
-                    return Colors.blue.withOpacity(0.12);
-                  return null; // Defer to the widget's default.
+        body: Stack(
+      children: [
+        PageView(
+          controller: _controller,
+          onPageChanged: (index) {
+            setState(() {
+              onLastPage = (index == 2);
+            });
+          },
+          children: [
+            page1(),
+            page2(),
+            page3(),
+          ],
+        ),
+        Container(
+          alignment: Alignment(0, 0.75),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  _controller.jumpToPage(2);
                 },
+                child: Text(
+                  'Skip',
+                  style: TextStyle(fontFamily: 'Roboto-BoldItalic'),
+                ),
               ),
-            ),
-            onPressed: () {
-              navigateToSubPage(context);
-            },
-            child: Text('Splash Screen')),
-      ),
-    );
+              SmoothPageIndicator(
+                controller: _controller,
+                count: 3,
+                effect: const WormEffect(
+                  dotHeight: 16,
+                  dotWidth: 16,
+                  type: WormType.thinUnderground,
+                ),
+              ),
+              onLastPage
+                  ? GestureDetector(
+                      onTap: () {
+                        navigateToHomePage(context);
+                      },
+                      child: Text(
+                        'Done',
+                        style: TextStyle(fontFamily: 'Roboto-BoldItalic'),
+                      ),
+                    )
+                  : GestureDetector(
+                      onTap: () {
+                        _controller.nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: Text(
+                        'Next',
+                        style: TextStyle(fontFamily: 'Roboto-BoldItalic'),
+                      ),
+                    ),
+            ],
+          ),
+        )
+      ],
+    ));
   }
 
-  Future navigateToSubPage(context) async {
+  Future navigateToHomePage(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
   }
 }
