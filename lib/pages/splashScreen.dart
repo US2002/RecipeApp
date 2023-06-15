@@ -117,6 +117,11 @@ class _splashScreenState extends State<splashScreen> {
   }
 
   Future navigateToHomePage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return home();
+      }),
+    );
   }
 }
