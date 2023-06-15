@@ -15,6 +15,7 @@ class splashScreen extends StatefulWidget {
 class _splashScreenState extends State<splashScreen> {
   PageController _controller = PageController();
   bool onLastPage = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +39,24 @@ class _splashScreenState extends State<splashScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              GestureDetector(
-                onTap: () {
+              FloatingActionButton.extended(
+                label: const Text(
+                  'Skip',
+                  style: TextStyle(
+                    fontFamily: 'Roboto-BoldItalic',
+                    color: Colors.black,
+                  ),
+                ), // <-- Text
+                backgroundColor: Colors.yellow,
+                icon: const Icon(
+                  // <-- Icon
+                  Icons.start,
+                  color: Colors.black,
+                  size: 24.0,
+                ),
+                onPressed: () {
                   _controller.jumpToPage(2);
                 },
-                child: Text(
-                  'Skip',
-                  style: TextStyle(fontFamily: 'Roboto-BoldItalic'),
-                ),
               ),
               SmoothPageIndicator(
                 controller: _controller,
@@ -57,27 +68,47 @@ class _splashScreenState extends State<splashScreen> {
                 ),
               ),
               onLastPage
-                  ? GestureDetector(
-                      onTap: () {
+                  ? FloatingActionButton.extended(
+                      label: const Text(
+                        'Cook',
+                        style: TextStyle(
+                          fontFamily: 'Roboto-BoldItalic',
+                          color: Colors.black,
+                        ),
+                      ), // <-- Text
+                      backgroundColor: Colors.yellow,
+                      icon: const Icon(
+                        // <-- Icon
+                        Icons.ramen_dining_sharp,
+                        color: Colors.black,
+                        size: 24.0,
+                      ),
+                      onPressed: () {
                         navigateToHomePage(context);
                       },
-                      child: Text(
-                        'Done',
-                        style: TextStyle(fontFamily: 'Roboto-BoldItalic'),
-                      ),
                     )
-                  : GestureDetector(
-                      onTap: () {
+                  : FloatingActionButton.extended(
+                      icon: const Icon(
+                        // <-- Icon
+                        Icons.skip_next,
+                        color: Colors.black,
+                        size: 24.0,
+                      ),
+                      label: const Text(
+                        'Next',
+                        style: TextStyle(
+                          fontFamily: 'Roboto-BoldItalic',
+                          color: Colors.black,
+                        ),
+                      ), // <-- Text
+                      backgroundColor: Colors.yellow,
+                      onPressed: () {
                         _controller.nextPage(
                           duration: Duration(milliseconds: 500),
                           curve: Curves.easeIn,
                         );
                       },
-                      child: Text(
-                        'Next',
-                        style: TextStyle(fontFamily: 'Roboto-BoldItalic'),
-                      ),
-                    ),
+                    )
             ],
           ),
         )
