@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class page2 extends StatefulWidget {
   const page2({super.key});
@@ -11,12 +12,10 @@ class _page2State extends State<page2> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.deepPurple,
+      color: Color(0xFF1f5573),
       child: Center(
-          child: Text(
-        "PAGE TWO!!",
-        style: TextStyle(fontFamily: 'Roboto-Bold'),
-      )),
+          child: Lottie.network(
+              'https://assets7.lottiefiles.com/packages/lf20_szviypry.json')),
     );
   }
 }
