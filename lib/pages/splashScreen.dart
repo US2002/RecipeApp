@@ -13,8 +13,18 @@ class splashScreen extends StatefulWidget {
 }
 
 class _splashScreenState extends State<splashScreen> {
-  PageController _controller = PageController();
   bool onLastPage = false;
+
+  PageController _controller = PageController();
+
+  Future navigateToHomePage(context) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return home();
+      }),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,14 +124,5 @@ class _splashScreenState extends State<splashScreen> {
         )
       ],
     ));
-  }
-
-  Future navigateToHomePage(context) async {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return home();
-      }),
-    );
   }
 }
