@@ -1,6 +1,8 @@
 import 'dart:math';
+import 'package:drop_shadow/drop_shadow.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_genie/pages/pantryPage.dart';
+import 'package:recipe_genie/pages/recipeListPage.dart';
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -24,9 +26,18 @@ class _homeState extends State<home> {
     );
   }
 
+  Future navigateToRecipeListPage(context) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return recipesList();
+      }),
+    );
+  }
+
   Widget _listItem(index) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 1, top: 1),
+      // padding: const EdgeInsets.only(bottom: 1, top: 1),
       decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(width: 1, color: Colors.black26))),
       child: Center(
@@ -45,10 +56,10 @@ class _homeState extends State<home> {
               _isChecked = value;
             });
           },
-          activeColor: Color(0xFFff9f18),
+          activeColor: Colors.white,
           checkColor: Color(0xFF60bb63),
           controlAffinity: ListTileControlAffinity.leading,
-          tristate: true,
+          // tristate: true,
         ),
       ),
       // trailing: Text(
@@ -98,13 +109,13 @@ class _homeState extends State<home> {
                       child: TextField(
                         style: TextStyle(
                           color: Colors.blueGrey[800],
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15,
                         ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.blueGrey[50],
-                          contentPadding: EdgeInsets.symmetric(
+                          contentPadding: const EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 15),
                           prefixIcon: IconButton(
                             iconSize: 23,
@@ -132,34 +143,41 @@ class _homeState extends State<home> {
                     IconButton(
                       iconSize: 38,
                       onPressed: () {
-                        // navigateToPantryPage(context);
+                        navigateToPantryPage(context);
                       },
-                      color: Colors.blueGrey[700],
+                      color: Color(0xFFff9f18),
                       icon: Icon(Icons.edit_note),
                     ),
                   ],
                 ),
               ),
-              SizedBox.fromSize(
-                size: Size(200, 40),
-                child: ClipRRect(
-                  child: Material(
-                    borderRadius: BorderRadius.circular(50.0),
-                    color: Color(0xFFff9f18),
-                    child: InkWell(
-                      splashColor: Colors.blueGrey[50],
-                      onTap: () {},
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          // Icon(Icons.shopping_cart), // <-- Icon
-                          Text(
-                            "Search Recipes",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.white),
-                          ), // <-- Text
-                        ],
+              DropShadow(
+                blurRadius: 2,
+                offset: const Offset(3, 3),
+                spread: 1,
+                child: SizedBox.fromSize(
+                  size: Size(200, 40),
+                  child: ClipRRect(
+                    child: Material(
+                      borderRadius: BorderRadius.circular(50.0),
+                      color: Color(0xFFff9f18),
+                      child: InkWell(
+                        splashColor: Colors.blueGrey[50],
+                        onTap: () {
+                          navigateToRecipeListPage(context);
+                        },
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            // Icon(Icons.shopping_cart), // <-- Icon
+                            Text(
+                              "Search Recipes",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white),
+                            ), // <-- Text
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -171,8 +189,12 @@ class _homeState extends State<home> {
                   width: width * 1,
                   height: height * 0.45,
                   decoration: BoxDecoration(
-                    color: Color(0xFF60bb63),
+                    // color: Color(0xFF60bb63),
                     borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                      width: 3,
+                      color: Color(0xFF60bb63),
+                    ),
                   ),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -185,7 +207,7 @@ class _homeState extends State<home> {
                             height: height * 0.45,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.white,
+                                color: Colors.blueGrey[50],
                                 border: Border.all(
                                   width: 3,
                                   color: Color(0xFFeeeee4),
@@ -197,8 +219,80 @@ class _homeState extends State<home> {
                                     'Spices',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 27,
+                                      color: Colors.blueGrey[700],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ListView.builder(
+                                      itemCount: _itemData.length,
+                                      itemBuilder: (_, index) {
+                                        return _listItem(index);
+                                      }),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            width: 150,
+                            height: height * 0.45,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.blueGrey[50],
+                                border: Border.all(
+                                  width: 3,
+                                  color: Color(0xFFeeeee4),
+                                )),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Text(
+                                    'Dairy',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 27,
+                                      color: Colors.blueGrey[700],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ListView.builder(
+                                      itemCount: _itemData.length,
+                                      itemBuilder: (_, index) {
+                                        return _listItem(index);
+                                      }),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            width: 150,
+                            height: height * 0.45,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.blueGrey[50],
+                                border: Border.all(
+                                  width: 3,
+                                  color: Color(0xFFeeeee4),
+                                )),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Text(
+                                    'Veggies',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 27,
                                       color: Colors.blueGrey[700],
                                     ),
                                   ),
@@ -225,8 +319,12 @@ class _homeState extends State<home> {
                   width: width * 1,
                   height: height * 0.22,
                   decoration: BoxDecoration(
-                    color: Color(0xFF60bb63),
+                    // color: Color(0xFF60bb63),
                     borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                      width: 3,
+                      color: Color(0xFF60bb63),
+                    ),
                   ),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -239,19 +337,71 @@ class _homeState extends State<home> {
                             height: height * 0.22,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.white,
+                                color: Colors.blueGrey[50],
                                 border: Border.all(
                                   width: 3,
                                   color: Color(0xFFeeeee4),
                                 )),
-                            child: Text(
-                              'Spices',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                color: Colors.blueGrey[700],
+                            child: Center(
+                              child: Text(
+                                'Recipe 1',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.blueGrey[700],
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            width: 150,
+                            height: height * 0.22,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.blueGrey[50],
+                                border: Border.all(
+                                  width: 3,
+                                  color: Color(0xFFeeeee4),
+                                )),
+                            child: Center(
+                              child: Text(
+                                'Recipe 2',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.blueGrey[700],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            width: 150,
+                            height: height * 0.22,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.blueGrey[50],
+                                border: Border.all(
+                                  width: 3,
+                                  color: Color(0xFFeeeee4),
+                                )),
+                            child: Center(
+                              child: Text(
+                                'Recipe 3',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.blueGrey[700],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                         ),
