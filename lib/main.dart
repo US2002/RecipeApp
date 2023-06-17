@@ -4,7 +4,9 @@ import 'package:recipe_genie/pages/splashScreen.dart';
 void main() {
   runApp(MaterialApp(
     home: splashScreen(),
-    theme: ThemeData(fontFamily: 'Roboto-black'),
+    theme: ThemeData(
+      fontFamily: 'Montserrat',
+    ),
     debugShowCheckedModeBanner: false,
   ));
 }

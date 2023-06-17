@@ -12,7 +12,7 @@ class _page1State extends State<page1> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.pink[100],
+      color: Color(0xFFE8DACC),
       child: Lottie.network(
           'https://assets4.lottiefiles.com/packages/lf20_K0864uP6eC.json'),
     );

@@ -1,0 +1,42 @@
+COLORS: Color(0xFF)
+logo : #60bb63
+TEXT
+heading : blueGrey[800]
+subHeading & all text : blueGrey[400]
+Links : #60bb63
+White if under a Colored container
+
+Container of colors : #60bb63
+
+Icons : 
+If only icon : blueGrey[700] & #ff9f18
+If within a IconButton or Button : white & blueGrey[700]
+
+search bars : blueGrey[50]
+
+FONT:
+
+
+
+ - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Black.ttf
+        - asset: fonts/Montserrat-BlackItalic.ttf
+        - asset: fonts/Montserrat-Bold.ttf
+        - asset: fonts/Montserrat-BoldItalic.ttf
+        - asset: fonts/Montserrat-ExtraBold.ttf
+        - asset: fonts/Montserrat-ExtraBoldItalic.ttf
+        - asset: fonts/Montserrat-Light.ttf
+        - asset: fonts/Montserrat-ExtraLight.ttf
+        - asset: fonts/Montserrat-ExtraLightItalic.ttf
+        - asset: fonts/Montserrat-Italic.ttf
+        - asset: fonts/Montserrat-LightItalic.ttf
+        - asset: fonts/Montserrat-Medium.ttf
+        - asset: fonts/Montserrat-MediumItalic.ttf
+        - asset: fonts/Montserrat-Regular.ttf
+        - asset: fonts/Montserrat-SemiBold.ttf
+        - asset: fonts/Montserrat-SemiBoldItalic.ttf
+        - asset: fonts/Montserrat-Thin.ttf
+        - asset: fonts/Montserrat-ThinItalic.ttf
+
+          weight: 700

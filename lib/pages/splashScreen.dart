@@ -29,6 +29,7 @@ class _splashScreenState extends State<splashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        //!Body
         body: Stack(
       children: [
         PageView(
@@ -53,7 +54,6 @@ class _splashScreenState extends State<splashScreen> {
                 label: const Text(
                   'Skip',
                   style: TextStyle(
-                    fontFamily: 'Roboto-BoldItalic',
                     color: Colors.black,
                   ),
                 ), // <-- Text
@@ -82,7 +82,6 @@ class _splashScreenState extends State<splashScreen> {
                       label: const Text(
                         'Cook',
                         style: TextStyle(
-                          fontFamily: 'Roboto-BoldItalic',
                           color: Colors.black,
                         ),
                       ), // <-- Text
@@ -107,7 +106,6 @@ class _splashScreenState extends State<splashScreen> {
                       label: const Text(
                         'Next',
                         style: TextStyle(
-                          fontFamily: 'Roboto-BoldItalic',
                           color: Colors.black,
                         ),
                       ), // <-- Text
