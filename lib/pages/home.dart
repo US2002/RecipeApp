@@ -13,6 +13,7 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   bool? _isChecked = false;
+
   final List _itemData = List.generate(1000, (index) {
     return {"name": "Item", "age": Random().nextInt(90) + 10};
   });
@@ -329,89 +330,41 @@ class _homeState extends State<home> {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            width: 150,
-                            height: height * 0.22,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.blueGrey[50],
-                                border: Border.all(
-                                  width: 3,
-                                  color: Color(0xFFeeeee4),
-                                )),
-                            child: Center(
-                              child: Text(
-                                'Recipe 1',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                  color: Colors.blueGrey[700],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            width: 150,
-                            height: height * 0.22,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.blueGrey[50],
-                                border: Border.all(
-                                  width: 3,
-                                  color: Color(0xFFeeeee4),
-                                )),
-                            child: Center(
-                              child: Text(
-                                'Recipe 2',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                  color: Colors.blueGrey[700],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            width: 150,
-                            height: height * 0.22,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.blueGrey[50],
-                                border: Border.all(
-                                  width: 3,
-                                  color: Color(0xFFeeeee4),
-                                )),
-                            child: Center(
-                              child: Text(
-                                'Recipe 3',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                  color: Colors.blueGrey[700],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      children: [randomRecipe()],
                     ),
                   ),
                 ),
               ),
             ]),
           )),
+    );
+  }
+
+  randomRecipe() {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        width: 150,
+        height: 50,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.blueGrey[50],
+            border: Border.all(
+              width: 3,
+              color: Color(0xFFeeeee4),
+            )),
+        child: Center(
+          child: Text(
+            'Recipe 1',
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+              color: Colors.blueGrey[700],
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
     );
   }
 }
